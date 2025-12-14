@@ -1,5 +1,6 @@
 package arnurproject.rental.models;
 import arnurproject.rental.models.Vehicle;
+import arnurproject.rental.models.Client;
 
 public class RentalService {
     private String companyName;
@@ -18,8 +19,14 @@ public class RentalService {
         System.out.println("=== Welcome to " + companyName + " ===");
         System.out.println("Available vehicles:");
         for (int i = 0; i < availableCars.length; i++) {
-
-            availableCars[i].printInfo();
+            if (!availableCars[i].getRentingStatus()) {
+                availableCars[i].printInfo();
+            }
         }
+    }
+
+    //Аренда
+    public void rentCar(Client client, Vehicle vehicle) {
+
     }
 }

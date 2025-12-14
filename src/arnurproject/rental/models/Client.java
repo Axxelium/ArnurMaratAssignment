@@ -26,7 +26,7 @@ public class Client {
     public void setNumber(int number) {
         this.number = number;
     }
-    public void setStatus(boolean rentingStatus) {
+    public void setStatusClient(boolean rentingStatus) {
         this.rentingStatus = rentingStatus;
     }
     public void setBalance(int balance) {
@@ -37,7 +37,7 @@ public class Client {
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public int getNumber() { return number; }
-    public boolean getRentingStatus() { return rentingStatus; }
+    public boolean getRentingStatusClient() { return rentingStatus; }
     public int getBalance() { return balance; }
 
     // Вывод информации
