@@ -4,8 +4,17 @@ public class Client {
     private String name;
     private String surname;
     private int number;
-    private boolean RentingStatus = false;
+    private boolean rentingStatus;
     private int balance;
+
+    // Конструктор
+    public Client(String name, String surname, int number) {
+        this.name = name;
+        this.surname = surname;
+        this.number = number;
+        this.rentingStatus = false;
+        this.balance = 0;
+    }
 
     // Сеттеры
     public void setName(String name) {
@@ -17,8 +26,8 @@ public class Client {
     public void setNumber(int number) {
         this.number = number;
     }
-    public void setName(boolean RentingStatus) {
-        this.RentingStatus = RentingStatus;
+    public void setStatus(boolean rentingStatus) {
+        this.rentingStatus = rentingStatus;
     }
     public void setBalance(int balance) {
         this.balance = balance;
@@ -28,7 +37,15 @@ public class Client {
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public int getNumber() { return number; }
-    public boolean getRentingStatus() { return RentingStatus; }
+    public boolean getRentingStatus() { return rentingStatus; }
     public int getBalance() { return balance; }
 
+    // Вывод информации
+    public void printInfo() {
+        System.out.println("Client name: " + name + " " + surname);
+        System.out.println("Client number: " + number);
+        System.out.println("Renting status: " + rentingStatus);
+        System.out.println("Balance: " + balance);
+        System.out.println("---------------------------");
+    }
 }
