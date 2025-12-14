@@ -1,4 +1,4 @@
-package arnurproject.rental;
+package arnurproject.rental.models;
     
 public class Vehicle {
     private String brand;
@@ -6,23 +6,27 @@ public class Vehicle {
     private int year;
     private int PricePerDay;
 
-    public void setInfo(String brand, String model, int year, int PricePerDay) {
+    // Сеттеры
+    public void setInfo(String brand) {
         this.brand = brand;
+    }
+    public void setModel(String model) {
         this.model = model;
+    }
+    public void setYear(int year) {
         this.year = year;
+    }
+    public void setPricePerDay(int PricePerDay) {
         this.PricePerDay = PricePerDay;
     }
 
-    public void getBrand() {
-        return brand;
-    }
-    public void getModel() {
+    // Геттеры
+    public String getBrand() { return brand; }
+    public String getModel() {
         return model;
     }
-    public void getYear() {
-        return year
+    public int getYear() {
+        return year;
     }
-    public void getPrice() {
-        return PricePerDay
-    }
+    public int getPrice() { return PricePerDay; }
 }

@@ -3,7 +3,8 @@ import arnurproject.rental.models.Vehicle;
 import arnurproject.rental.models.Client;
 import arnurproject.rental.models.RentalService;
 
-public class main {
-
-    1
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
 }

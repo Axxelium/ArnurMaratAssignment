@@ -1,4 +1,4 @@
-package arnurproject.rental;
+package arnurproject.rental.models;
     
 public class Client {
     private String name;
@@ -7,17 +7,28 @@ public class Client {
     private boolean RentingStatus = false;
     private int balance;
 
-    public void setInfo(String name, String surname, int number, ) {
+    // Сеттеры
+    public void setName(String name) {
         this.name = name;
+    }
+    public void setSurname(String surname) {
         this.surname = surname;
+    }
+    public void setNumber(int number) {
         this.number = number;
-        this.RentingStatus = Renting;
+    }
+    public void setName(boolean RentingStatus) {
+        this.RentingStatus = RentingStatus;
+    }
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
-    public void getName() { return name; }
-    public void getSurname() { return surname; }
-    public void getNumber() { return number; }
-    public void getRentingStatus() { return RentingStatus; }
+    // Геттеры
+    public String getName() { return name; }
+    public String getSurname() { return surname; }
+    public int getNumber() { return number; }
+    public boolean getRentingStatus() { return RentingStatus; }
+    public int getBalance() { return balance; }
 
 }
