@@ -3,12 +3,12 @@ package arnurproject.rental.models;
 public class Client {
     private String name;
     private String surname;
-    private int number;
+    private String number;
     private boolean rentingStatus;
     private int balance;
 
     // Конструктор
-    public Client(String name, String surname, int number) {
+    public Client(String name, String surname, String number, boolean rentingStatus, int balance) {
         this.name = name;
         this.surname = surname;
         this.number = number;
@@ -23,7 +23,7 @@ public class Client {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
     public void setStatusClient(boolean rentingStatus) {
@@ -36,12 +36,12 @@ public class Client {
     // Геттеры
     public String getName() { return name; }
     public String getSurname() { return surname; }
-    public int getNumber() { return number; }
+    public String getNumber() { return number; }
     public boolean getRentingStatusClient() { return rentingStatus; }
     public int getBalance() { return balance; }
 
     // Вывод информации
-    public void printInfo() {
+    public void printInfoClient() {
         System.out.println("Client name: " + name + " " + surname);
         System.out.println("Client number: " + number);
         System.out.println("Renting status: " + rentingStatus);

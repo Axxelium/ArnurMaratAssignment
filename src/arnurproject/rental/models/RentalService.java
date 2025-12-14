@@ -20,7 +20,7 @@ public class RentalService {
         System.out.println("Available vehicles:");
         for (int i = 0; i < availableCars.length; i++) {
             if (!availableCars[i].getRentingStatus()) {
-                availableCars[i].printInfo();
+                availableCars[i].printInfoVehicle();
             }
         }
     }

@@ -41,11 +41,11 @@ public class Vehicle {
     public int getYear() {
         return year;
     }
-    public int getPrice() { return pricePerDay; }
+    public int getPricePerDay() { return pricePerDay; }
     public boolean getRentingStatus() { return rentingStatus; }
 
     // Вывод информации
-    public void printInfo() {
+    public void printInfoVehicle() {
         System.out.println("Vehicle Info: " + brand + " " + model + " (" + year + ")");
         System.out.println("Daily Rate: " + pricePerDay + " KZT");
         System.out.println("Renting Status: " + rentingStatus);
