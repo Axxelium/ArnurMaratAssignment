@@ -30,7 +30,7 @@ public class Main {
             System.out.println("\nClient " + client1.getName() + " is renting " + car2.getBrand() + " " + car2.getModel());
 
             car2.setRentingStatus(true); // Теперь BMW занята
-            client1.setStatusClient(true);    // Клиент теперь арендатор
+            client1.setStatusClient(true);    // Клиент арендовал
 
             System.out.println("\n--- Updated State (After Rent) ---");
             myRentalCompany.showAvailableCars(); // BMW уходит из списка
