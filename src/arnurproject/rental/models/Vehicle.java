@@ -1,6 +1,7 @@
 package arnurproject.rental.models;
-    
-public class Vehicle {
+import java.util.Objects;
+
+public abstract class Vehicle {
     private String brand;
     private String model;
     private int year;
@@ -45,10 +46,23 @@ public class Vehicle {
     public boolean getRentingStatus() { return rentingStatus; }
 
     // Вывод информации
-    public void printInfoVehicle() {
-        System.out.println("Vehicle Info: " + brand + " " + model + " (" + year + ")");
-        System.out.println("Daily Rate: " + pricePerDay + " KZT");
-        System.out.println("Renting Status: " + rentingStatus);
-        System.out.println("---------------------------");
+    @Override
+    public String toString() {
+        return "Brand: " + brand + ", Model: " + model + ", Price: " + pricePerDay;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return year == vehicle.year &&
+                Objects.equals(brand, vehicle.brand) &&
+                Objects.equals(model, vehicle.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, year);
     }
 }

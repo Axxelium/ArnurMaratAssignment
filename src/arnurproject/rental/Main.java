@@ -1,4 +1,5 @@
 package arnurproject.rental;
+import arnurproject.rental.models.Car;
 import arnurproject.rental.models.Vehicle;
 import arnurproject.rental.models.Client;
 import arnurproject.rental.models.RentalService;
@@ -6,9 +7,9 @@ import arnurproject.rental.models.RentalService;
 public class Main {
         public static void main(String[] args) {
             System.out.println("Начало");
-            Vehicle car1 = new Vehicle("Toyota", "Camry", 2020, 15000);
-            Vehicle car2 = new Vehicle("BMW", "X5", 2022, 35000);
-            Vehicle car3 = new Vehicle("Kia", "Rio", 2019, 10000);
+            Car car1 = new Car("Toyota", "Camry", 2020, 15000, 5);
+            Car car2 = new Car("BMW", "X5", 2022, 35000, 5);
+            Car car3 = new Car("Kia", "Rio", 2019, 10000, 5);
 
             Vehicle[] garage = {car1, car2, car3};
 

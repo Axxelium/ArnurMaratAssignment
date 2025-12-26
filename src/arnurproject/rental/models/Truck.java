@@ -1,24 +1,24 @@
 package arnurproject.rental.models;
 
 public class Truck extends Vehicle {
-    private double liftingcapacity;
+    private double loadCapacity;
     // конструктоо
     public Truck(String brand, String model, int year, int pricePerDay, double liftingcapacity) {
         super(brand, model, year, pricePerDay);
-        this.liftingcapacity = liftingcapacity;
+        this.loadCapacity = liftingcapacity;
     }
     // геттер
-    public double getLiftingcapacity() {
-        return liftingcapacity;
+    public double getLoadCapacity() {
+        return loadCapacity;
     }
     // сеттер
-    public void setLiftingcapacity(double liftingcapacity) {
-        this.liftingcapacity = liftingcapacity;
+    public void setLoadCapacity(double loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 
     @Override
     public String toString()
     {
-        return super.toString() + ", Lifting capacity: " + liftingcapacity;
+        return super.toString() + ", Lifting capacity: " + loadCapacity;
     }
 }
