@@ -14,19 +14,27 @@ public class RentalService {
         this.totalRevenue = 0;
     }
 
-    // Вывод информации
-    public void showAvailableCars() {
-        System.out.println("=== Welcome to " + companyName + " ===");
-        System.out.println("Available vehicles:");
-        for (int i = 0; i < availableCars.length; i++) {
-            if (!availableCars[i].getRentingStatus()) {
-                availableCars[i].printInfoVehicle();
+    // фильтрация
+    public void searchByMaxPrice(int maxPrice) {
+        System.out.println("--- Search Results (Cheaper than " + maxPrice + ") ---");
+        boolean found = false;
+        for (Vehicle v : availableCars) {
+            if (v.getPricePerDay() <= maxPrice) {
+                System.out.println(v.toString()); // Тут работает полиморфизм!
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("No vehicles found in this price range.");
         }
     }
 
-    //Аренда
-    public void rentCar(Client client, Vehicle vehicle) {
-
+    public void showAvailableCars() {
+        System.out.println("=== " + companyName + " Garage ===");
+        for (Vehicle vehicle : availableCars) {
+            if (!vehicle.getRentingStatus()) {
+                System.out.println(vehicle.toString());
+            }
+        }
     }
 }
