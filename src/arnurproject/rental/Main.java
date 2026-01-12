@@ -35,7 +35,7 @@ public class Main {
             // Считываем число, которое ввел пользователь
             int choice = scanner.nextInt();
 
-            // Обрабатываем выбор
+            // Выбор
             switch (choice) {
                 case 1:
                     service.showAvailableCars();
@@ -46,11 +46,11 @@ public class Main {
                     break;
                 case 3:
                     System.out.print("Enter your max budget (KZT): ");
-                    int budget = scanner.nextInt(); // Ждем ввода цены
+                    int budget = scanner.nextInt(); // ввод цены
                     service.searchByMaxPrice(budget);
                     break;
                 case 4:
-                    // Простая имитация аренды по индексу массива (0, 1, 2...)
+                    // аренда
                     System.out.println("Enter vehicle index to rent (0 - " + (garage.length - 1) + "): ");
                     int index = scanner.nextInt();
                     if (index >= 0 && index < garage.length) {
@@ -66,13 +66,13 @@ public class Main {
                     break;
                 case 0:
                     System.out.println("Exiting system. Goodbye!");
-                    isRunning = false; // Останавливаем цикл
+                    isRunning = false; // стоп
                     break;
                 default:
                     System.out.println("Invalid command. Please try again.");
             }
         }
 
-        scanner.close(); // Хороший тон - закрывать сканер в конце
+        scanner.close();
     }
 }

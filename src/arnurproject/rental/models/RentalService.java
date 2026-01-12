@@ -14,7 +14,23 @@ public class RentalService {
         this.totalRevenue = 0;
     }
 
-    // фильтрация
+    // сортировка
+    public void sortByPrice() {
+        int n = availableCars.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                // бабл сорт
+                if (availableCars[j].getPricePerDay() > availableCars[j + 1].getPricePerDay()) {
+                    Vehicle temp = availableCars[j];
+                    availableCars[j] = availableCars[j + 1];
+                    availableCars[j + 1] = temp;
+                }
+            }
+        }
+        System.out.println("--- Vehicles sorted by price (Low to High) ---");
+    }
+
+    // Фильтрация
     public void searchByMaxPrice(int maxPrice) {
         System.out.println("--- Search Results (Cheaper than " + maxPrice + ") ---");
         boolean found = false;
