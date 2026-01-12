@@ -28,7 +28,7 @@ public class Main {
             System.out.println("1. Show all available vehicles");
             System.out.println("2. Sort vehicles by price (Low -> High)");
             System.out.println("3. Search vehicle by max budget");
-            System.out.println("4. Rent a vehicle (Simulation)"); // Дополнительная опция
+            System.out.println("4. Rent a vehicle"); // Дополнительная опция
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 

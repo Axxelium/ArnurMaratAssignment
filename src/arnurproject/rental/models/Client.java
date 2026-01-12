@@ -8,12 +8,12 @@ public class Client {
     private int balance;
 
     // Конструктор
-    public Client(String name, String surname, String number, boolean rentingStatus, int balance) {
+    public Client(String name, String surname, String number, int balance) {
         this.name = name;
         this.surname = surname;
         this.number = number;
+        this.balance = balance;
         this.rentingStatus = false;
-        this.balance = 0;
     }
 
     // Сеттеры

@@ -19,7 +19,6 @@ public class RentalService {
         int n = availableCars.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
-                // бабл сорт
                 if (availableCars[j].getPricePerDay() > availableCars[j + 1].getPricePerDay()) {
                     Vehicle temp = availableCars[j];
                     availableCars[j] = availableCars[j + 1];
@@ -28,6 +27,9 @@ public class RentalService {
             }
         }
         System.out.println("--- Vehicles sorted by price (Low to High) ---");
+
+        // ДОБАВЛЯЕМ ЭТУ СТРОКУ, чтобы сразу увидеть результат
+        showAvailableCars();
     }
 
     // Фильтрация
@@ -45,11 +47,16 @@ public class RentalService {
         }
     }
 
+    // cписок доступных машин
     public void showAvailableCars() {
         System.out.println("=== " + companyName + " Garage ===");
-        for (Vehicle vehicle : availableCars) {
-            if (!vehicle.getRentingStatus()) {
-                System.out.println(vehicle.toString());
+        // Используем обычный for, чтобы был доступ к индексу 'i'
+        for (int i = 0; i < availableCars.length; i++) {
+            if (!availableCars[i].getRentingStatus()) {
+                // Добавляем (i) перед машиной
+                System.out.println( (i + 1) + ". " + availableCars[i].toString());
+            } else {
+                System.out.println(i + ". [Rented] " + availableCars[i].getBrand());
             }
         }
     }
