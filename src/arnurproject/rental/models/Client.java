@@ -1,6 +1,7 @@
 package arnurproject.rental.models;
     
 public class Client {
+    private int id;
     private String name;
     private String surname;
     private String number;
@@ -8,7 +9,8 @@ public class Client {
     private int balance;
 
     // Конструктор
-    public Client(String name, String surname, String number, int balance) {
+    public Client(int id, String name, String surname, String number, int balance) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.number = number;
@@ -17,6 +19,7 @@ public class Client {
     }
 
     // Сеттеры
+    public void setId(int id) { this.id = id; }
     public void setName(String name) {
         this.name = name;
     }
@@ -34,6 +37,7 @@ public class Client {
     }
 
     // Геттеры
+    public int getId() { return id; }
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public String getNumber() { return number; }
@@ -42,6 +46,8 @@ public class Client {
 
     // Вывод информации
     public void printInfoClient() {
+        System.out.println("---------------------------");
+        System.out.println("ID number: " + id);
         System.out.println("Client name: " + name + " " + surname);
         System.out.println("Client number: " + number);
         System.out.println("Renting status: " + rentingStatus);

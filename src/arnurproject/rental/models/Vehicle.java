@@ -2,6 +2,7 @@ package arnurproject.rental.models;
 import java.util.Objects;
 
 public abstract class Vehicle {
+    private int id;
     private String brand;
     private String model;
     private int year;
@@ -9,7 +10,8 @@ public abstract class Vehicle {
     private boolean rentingStatus;
 
     // Конструктор
-    public Vehicle(String brand, String model, int year, int pricePerDay) {
+    public Vehicle(int id,String brand, String model, int year, int pricePerDay) {
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.year = year;
@@ -18,30 +20,22 @@ public abstract class Vehicle {
     }
 
     // Сеттеры
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setBrand(String brand) {
         this.brand = brand;
     }
-    public void setModel(String model) {
-        this.model = model;
-    }
-    public void setYear(int year) {
-        this.year = year;
-    }
-    public void setPricePerDay(int pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
-    public void setRentingStatus(boolean rentingStatus) {
-        this.rentingStatus = rentingStatus;
-    }
+    public void setModel(String model) { this.model = model; }
+    public void setYear(int year) { this.year = year; }
+    public void setPricePerDay(int pricePerDay) { this.pricePerDay = pricePerDay; }
+    public void setRentingStatus(boolean rentingStatus) { this.rentingStatus = rentingStatus; }
 
     // Геттеры
+    public int getId() { return id; }
     public String getBrand() { return brand; }
-    public String getModel() {
-        return model;
-    }
-    public int getYear() {
-        return year;
-    }
+    public String getModel() { return model; }
+    public int getYear() { return year; }
     public int getPricePerDay() { return pricePerDay; }
     public boolean getRentingStatus() { return rentingStatus; }
 

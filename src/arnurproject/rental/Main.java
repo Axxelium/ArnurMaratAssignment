@@ -9,30 +9,33 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        /*
         Car car1 = new Car("Toyota", "Camry", 2020, 15000, 5);
         Car car2 = new Car("Kia", "Rio", 2019, 10000, 5);
-        Truck truck1 = new Truck("BMW", "", 2021, 35000, 5000.0);
+        Truck truck1 = new Truck("BMW", "M5", 2021, 35000, 5000.0);
 
         Vehicle[] garage = {truck1, car2, car1};
         RentalService service = new RentalService("ArnurRental", garage);
+        */
 
-        // --- 2. ЗАПУСК ИНТЕРАКТИВНОГО МЕНЮ ---
-        Scanner scanner = new Scanner(System.in); // Создаем сканер для чтения ввода
-        boolean isRunning = true; // Флаг для работы цикла
+        // CLI
+        Scanner scanner = new Scanner(System.in); // Создаем сканер ввода
+        boolean isRunning = true; // Флаг
 
         System.out.println("Welcome to Rental System Console!");
 
-        // Цикл будет работать, пока isRunning == true
+        // Цикл работает пока isRunning == true
         while (isRunning) {
             System.out.println("\n--- MAIN MENU ---");
             System.out.println("1. Show all available vehicles");
             System.out.println("2. Sort vehicles by price (Low -> High)");
             System.out.println("3. Search vehicle by max budget");
-            System.out.println("4. Rent a vehicle"); // Дополнительная опция
+            System.out.println("4. Rent a vehicle");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
-            // Считываем число, которое ввел пользователь
+            // Считываем число введенное пользовательом
             int choice = scanner.nextInt();
 
             // Выбор

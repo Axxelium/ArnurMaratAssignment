@@ -47,7 +47,7 @@ public class RentalService {
         }
     }
 
-    // cписок доступных машин
+    // список доступных машин
     public void showAvailableCars() {
         System.out.println("=== " + companyName + " Garage ===");
         // Используем обычный for, чтобы был доступ к индексу 'i'

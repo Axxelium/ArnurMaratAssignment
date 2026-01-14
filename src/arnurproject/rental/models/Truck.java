@@ -3,8 +3,8 @@ package arnurproject.rental.models;
 public class Truck extends Vehicle {
     private double loadCapacity;
     // конструктоо
-    public Truck(String brand, String model, int year, int pricePerDay, double liftingcapacity) {
-        super(brand, model, year, pricePerDay);
+    public Truck(int id, String brand, String model, int year, int pricePerDay, double liftingcapacity) {
+        super(id, brand, model, year, pricePerDay);
         this.loadCapacity = liftingcapacity;
     }
     // геттер
