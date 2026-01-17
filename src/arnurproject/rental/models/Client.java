@@ -8,7 +8,7 @@ public class Client {
     private boolean rentingStatus;
     private int balance;
 
-    // Конструктор
+    // Конструкторы
     public Client(int id, String name, String surname, String number, int balance) {
         this.id = id;
         this.name = name;
@@ -17,6 +17,15 @@ public class Client {
         this.balance = balance;
         this.rentingStatus = false;
     }
+    public Client(String name, String surname, String number, int balance) {
+        this.name = name;
+        this.surname = surname;
+        this.number = number;
+        this.balance = balance;
+        this.rentingStatus = false;
+        this.id = 0; // Пока что 0, база потому сама даст айди
+    }
+
 
     // Сеттеры
     public void setId(int id) { this.id = id; }

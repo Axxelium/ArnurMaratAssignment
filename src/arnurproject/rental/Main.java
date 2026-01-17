@@ -1,81 +1,96 @@
 package arnurproject.rental;
 
+import arnurproject.rental.data.DBManager;
 import arnurproject.rental.models.Car;
+import arnurproject.rental.models.Client;
 import arnurproject.rental.models.RentalService;
 import arnurproject.rental.models.Truck;
 import arnurproject.rental.models.Vehicle;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
+    private static DBManager dbManager = new DBManager();
+
     public static void main(String[] args) {
+        System.out.println("=== VEHICLE RENTAL SYSTEM 2.0 (DB Connected) ===");
+        boolean isRunning = true;
 
-        /*
-        Car car1 = new Car("Toyota", "Camry", 2020, 15000, 5);
-        Car car2 = new Car("Kia", "Rio", 2019, 10000, 5);
-        Truck truck1 = new Truck("BMW", "M5", 2021, 35000, 5000.0);
-
-        Vehicle[] garage = {truck1, car2, car1};
-        RentalService service = new RentalService("ArnurRental", garage);
-        */
-
-        // CLI
-        Scanner scanner = new Scanner(System.in); // Создаем сканер ввода
-        boolean isRunning = true; // Флаг
-
-        System.out.println("Welcome to Rental System Console!");
-
-        // Цикл работает пока isRunning == true
         while (isRunning) {
-            System.out.println("\n--- MAIN MENU ---");
-            System.out.println("1. Show all available vehicles");
-            System.out.println("2. Sort vehicles by price (Low -> High)");
-            System.out.println("3. Search vehicle by max budget");
-            System.out.println("4. Rent a vehicle");
+            System.out.println("\n--- LOGIN MENU ---");
+            System.out.println("1. Login as ADMIN (Database Operations)");
+            System.out.println("2. Login as CLIENT (Rental Service)");
             System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.print("Select role: ");
 
-            // Считываем число введенное пользовательом
             int choice = scanner.nextInt();
 
-            // Выбор
             switch (choice) {
                 case 1:
-                    service.showAvailableCars();
+                    runAdminMode(); // От лица админа
                     break;
                 case 2:
-                    service.sortByPrice();
-                    System.out.println("Done! List is sorted.");
-                    break;
-                case 3:
-                    System.out.print("Enter your max budget (KZT): ");
-                    int budget = scanner.nextInt(); // ввод цены
-                    service.searchByMaxPrice(budget);
-                    break;
-                case 4:
-                    // аренда
-                    System.out.println("Enter vehicle index to rent (0 - " + (garage.length - 1) + "): ");
-                    int index = scanner.nextInt();
-                    if (index >= 0 && index < garage.length) {
-                        if (!garage[index].getRentingStatus()) {
-                            garage[index].setRentingStatus(true);
-                            System.out.println("Success! You rented: " + garage[index].getBrand());
-                        } else {
-                            System.out.println("Sorry, this vehicle is already rented.");
-                        }
-                    } else {
-                        System.out.println("Invalid index!");
-                    }
+                    // runClientMode(); // От лица клиента
                     break;
                 case 0:
-                    System.out.println("Exiting system. Goodbye!");
-                    isRunning = false; // стоп
+                    isRunning = false;
+                    System.out.println("Goodbye!");
                     break;
                 default:
-                    System.out.println("Invalid command. Please try again.");
+                    System.out.println("Invalid choice.");
             }
         }
-
         scanner.close();
+    }
+
+    // --- РЕЖИМ АДМИНИСТРАТОРА (Работа с БД) ---
+    // Здесь мы выполняем требования Assignment 3 (READ / WRITE)
+    private static void runAdminMode() {
+        boolean isAdmin = true;
+        while (isAdmin) {
+            System.out.println("\n--- ADMIN PANEL (PostgreSQL) ---");
+            System.out.println("1. [CREATE] Register new Client into DB");
+            System.out.println("2. [READ] Show all Clients from DB");
+            // В будущем добавишь сюда добавление машин и удаление
+            System.out.println("0. Back to Main Menu");
+            System.out.print("Admin choice: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Добавление клиента
+                    System.out.print("Enter Name: ");
+                    String name = scanner.next();
+                    System.out.print("Enter Surname: ");
+                    String surname = scanner.next();
+                    System.out.print("Enter Phone: ");
+                    String phone = scanner.next();
+                    System.out.print("Enter Initial Balance: ");
+                    int balance = scanner.nextInt();
+
+                    // Создание и добавление объекта в БД
+                    Client newClient = new Client(name, surname, phone, balance);
+                    dbManager.addClient(newClient);
+                    break;
+
+                case 2:
+                    // Чтение списка из ДБ
+                    System.out.println("\n--- List of Clients from DB ---");
+                    ArrayList<Client> dbClients = dbManager.getAllClients();
+                    for (Client c : dbClients) {
+                        c.printInfoClient(); // Вывод информации
+                    }
+                    break;
+
+                case 0:
+                    isAdmin = false;
+                    break;
+                default:
+                    System.out.println("Invalid command.");
+            }
+        }
     }
 }

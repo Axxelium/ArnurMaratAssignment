@@ -1,6 +1,9 @@
 package arnurproject.rental.data;
 
 import arnurproject.rental.models.Client;
+import arnurproject.rental.models.Vehicle;
+import arnurproject.rental.models.Car;
+import arnurproject.rental.models.Truck;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,7 +11,7 @@ public class DBManager {
 
     // 1. CREATE добавление
     public void addClient(Client client) {
-        String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)" ;
 
         try (Connection conn = PostgresDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -16,7 +19,7 @@ public class DBManager {
             // Заполнение
             stmt.setString(1, client.getName());
             stmt.setString(2, client.getSurname());
-            stmt.setString(3, client.getNumber()); // У тебя геттер getNumber() возвращает телефон
+            stmt.setString(3, client.getNumber());
             stmt.setInt(4, client.getBalance());
             stmt.setBoolean(5, client.getRentingStatusClient());
 
@@ -28,7 +31,8 @@ public class DBManager {
         }
     }
 
-    // 2. READ Получение
+    // READ
+    // Получение списка клиентов с БД
     public ArrayList<Client> getAllClients() {
         ArrayList<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM clients";
@@ -39,18 +43,62 @@ public class DBManager {
 
             while (rs.next()) {
                 // Читаем данные из строки таблицы
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 String phone = rs.getString("phone_number");
                 int balance = rs.getInt("balance");
 
                 // Создаем объект (используем твой конструктор)
-                Client c = new Client(id ,name, surname, phone, balance);
+                Client c = new Client(id, name, surname, phone, balance);
                 clients.add(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return clients;
+    }
+
+    // Получение списка машин с БД
+    public ArrayList<Vehicle> getAllVehicles() {
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        String sql = "SELECT * FROM vehicles";
+
+        try (Connection conn = PostgresDB.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                // Считываем все
+                int id = rs.getInt("id");
+                String brand = rs.getString("brand");
+                String model = rs.getString("model");
+                int year = rs.getInt("year");
+                int price = rs.getInt("price_per_day");
+                boolean status = rs.getBoolean("renting_status");
+                String type = rs.getString("type"); // 'CAR' или 'TRUCK'
+
+                Vehicle v = null;
+
+                // Создаем нужный тип объекта
+                if ("CAR".equalsIgnoreCase(type)) {
+                    int seats = rs.getInt("seats");
+                    v = new Car(id, brand, model, year, price, seats);
+                } else if ("TRUCK".equalsIgnoreCase(type)) {
+                    double capacity = rs.getDouble("load_capacity");
+                    v = new Truck(id, brand, model, year, price, capacity);
+                }
+
+                // Если объект создался, проставляем ID и Статус
+                if (v != null) {
+                    v.setId(id);
+                    v.setRentingStatus(status);
+                    vehicles.add(v);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicles;
     }
 }
