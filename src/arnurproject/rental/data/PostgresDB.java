@@ -12,7 +12,6 @@ public class PostgresDB {
     // Соединение
     public static Connection getConnection() {
         try {
-            // Подключение
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             e.printStackTrace();

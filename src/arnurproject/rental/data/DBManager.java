@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DBManager {
 
-    // CREATe
+    // CREATE
     public void addClient(Client client) {
         String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)" ;
 
