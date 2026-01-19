@@ -15,13 +15,13 @@ public class Main {
     private static DBManager dbManager = new DBManager();
 
     public static void main(String[] args) {
-        System.out.println("=== VEHICLE RENTAL SYSTEM 2.0 (DB Connected) ===");
+        System.out.println("=== VEHICLE RENTAL SYSTEM ===");
         boolean isRunning = true;
 
         while (isRunning) {
             System.out.println("\n--- LOGIN MENU ---");
-            System.out.println("1. Login as ADMIN (Database Operations)");
-            System.out.println("2. Login as CLIENT (Rental Service)");
+            System.out.println("1. Login as ADMIN");
+            System.out.println("2. Login as CLIENT");
             System.out.println("0. Exit");
             System.out.print("Select role: ");
 

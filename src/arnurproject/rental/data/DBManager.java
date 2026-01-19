@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DBManager {
 
-    // Добавление клиента
+    // CREATe
     public void addClient(Client client) {
         String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)" ;
 
@@ -31,7 +31,7 @@ public class DBManager {
         }
     }
 
-    // Получение списка клиентов с БД
+    // READ
     public ArrayList<Client> getAllClients() {
         ArrayList<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM clients";
@@ -96,5 +96,49 @@ public class DBManager {
             e.printStackTrace();
         }
         return vehicles;
+    }
+
+    // 3. UPDATE
+    public void updateClient(int id, String newNumber, int newBalance) {
+        String sql = "UPDATE clients SET phone_number = ?, balance = ? WHERE id = ?";
+
+        try (Connection conn = PostgresDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newNumber);
+            stmt.setInt(2, newBalance);
+            stmt.setInt(3, id);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Client with ID " + id + " updated successfully!");
+            } else {
+                System.out.println("Client with ID " + id + " not found.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 4. DELETE
+    public void deleteClient(int id) {
+        String sql = "DELETE FROM clients WHERE id = ?";
+
+        try (Connection conn = PostgresDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Client with ID " + id + " deleted successfully!");
+            } else {
+                System.out.println("Client with ID " + id + " not found.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
