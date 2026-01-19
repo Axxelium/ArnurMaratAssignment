@@ -49,8 +49,10 @@ public class Main {
         boolean isAdmin = true;
         while (isAdmin) {
             System.out.println("\n--- ADMIN PANEL (PostgreSQL) ---");
-            System.out.println("1. [CREATE] Register new Client into DB");
-            System.out.println("2. [READ] Show all Clients from DB");
+            System.out.println("1. [CREATE] Register new Client");
+            System.out.println("2. [READ] Show all Clients");
+            System.out.println("3. [UPDATE] Edit Client");
+            System.out.println("4. [DELETE] Remove Client");
             System.out.println("0. Back to Main Menu");
             System.out.print("Admin choice: ");
 
@@ -58,7 +60,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    // Добавление клиента
+                    // CREATE
                     System.out.print("Enter Name: ");
                     String name = scanner.next();
                     System.out.print("Enter Surname: ");
@@ -68,17 +70,44 @@ public class Main {
                     System.out.print("Enter Initial Balance: ");
                     int balance = scanner.nextInt();
 
-                    // Создание и добавление объекта в БД
                     Client newClient = new Client(name, surname, phone, balance);
                     dbManager.addClient(newClient);
                     break;
 
                 case 2:
-                    // Чтение списка из ДБ
+                    // READ
                     System.out.println("\n--- List of Clients from DB ---");
                     ArrayList<Client> dbClients = dbManager.getAllClients();
                     for (Client c : dbClients) {
+                        System.out.print("[ID: " + c.getId() + "] ");
                         c.printInfoClient();
+                    }
+                    break;
+
+                case 3:
+                    // UPDATE
+                    System.out.print("Enter Client ID to update: ");
+                    int updateId = scanner.nextInt();
+                    System.out.print("Enter NEW Phone Number: ");
+                    String newPhone = scanner.next();
+                    System.out.print("Enter NEW Balance: ");
+                    int newBalance = scanner.nextInt();
+
+                    dbManager.updateClient(updateId, newPhone, newBalance);
+                    break;
+
+                case 4:
+                    // DELETE
+                    System.out.print("Enter Client ID to delete: ");
+                    int deleteId = scanner.nextInt();
+
+                    // Предупреждение
+                    System.out.print("Are you sure? (1 - Yes, 0 - No): ");
+                    int confirm = scanner.nextInt();
+                    if (confirm == 1) {
+                        dbManager.deleteClient(deleteId);
+                    } else {
+                        System.out.println("Operation cancelled.");
                     }
                     break;
 
