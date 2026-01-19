@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DBManager {
 
-    // 1. CREATE добавление
+    // Добавление клиента
     public void addClient(Client client) {
         String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)" ;
 
@@ -22,8 +22,8 @@ public class DBManager {
             stmt.setString(3, client.getNumber());
             stmt.setInt(4, client.getBalance());
             stmt.setBoolean(5, client.getRentingStatusClient());
-
-            stmt.executeUpdate(); // Отправляем в БД
+            // Отправка
+            stmt.executeUpdate();
             System.out.println("Client added to Database!");
 
         } catch (SQLException e) {
@@ -31,7 +31,6 @@ public class DBManager {
         }
     }
 
-    // READ
     // Получение списка клиентов с БД
     public ArrayList<Client> getAllClients() {
         ArrayList<Client> clients = new ArrayList<>();
@@ -42,14 +41,13 @@ public class DBManager {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Читаем данные из строки таблицы
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 String phone = rs.getString("phone_number");
                 int balance = rs.getInt("balance");
 
-                // Создаем объект (используем твой конструктор)
+                // создаем объект
                 Client c = new Client(id, name, surname, phone, balance);
                 clients.add(c);
             }
@@ -59,7 +57,6 @@ public class DBManager {
         return clients;
     }
 
-    // Получение списка машин с БД
     public ArrayList<Vehicle> getAllVehicles() {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
         String sql = "SELECT * FROM vehicles";
@@ -69,7 +66,6 @@ public class DBManager {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                // Считываем все
                 int id = rs.getInt("id");
                 String brand = rs.getString("brand");
                 String model = rs.getString("model");
@@ -80,7 +76,7 @@ public class DBManager {
 
                 Vehicle v = null;
 
-                // Создаем нужный тип объекта
+                // выбор класса для машины из бд
                 if ("CAR".equalsIgnoreCase(type)) {
                     int seats = rs.getInt("seats");
                     v = new Car(id, brand, model, year, price, seats);
@@ -89,7 +85,7 @@ public class DBManager {
                     v = new Truck(id, brand, model, year, price, capacity);
                 }
 
-                // Если объект создался, проставляем ID и Статус
+                // Айди и статус
                 if (v != null) {
                     v.setId(id);
                     v.setRentingStatus(status);

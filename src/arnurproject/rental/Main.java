@@ -29,10 +29,10 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    runAdminMode(); // От лица админа
+                    runAdminMode(); // админ вход
                     break;
                 case 2:
-                    // runClientMode(); // От лица клиента
+                    // клиент вход, потом болад
                     break;
                 case 0:
                     isRunning = false;
@@ -45,15 +45,12 @@ public class Main {
         scanner.close();
     }
 
-    // --- РЕЖИМ АДМИНИСТРАТОРА (Работа с БД) ---
-    // Здесь мы выполняем требования Assignment 3 (READ / WRITE)
     private static void runAdminMode() {
         boolean isAdmin = true;
         while (isAdmin) {
             System.out.println("\n--- ADMIN PANEL (PostgreSQL) ---");
             System.out.println("1. [CREATE] Register new Client into DB");
             System.out.println("2. [READ] Show all Clients from DB");
-            // В будущем добавишь сюда добавление машин и удаление
             System.out.println("0. Back to Main Menu");
             System.out.print("Admin choice: ");
 
@@ -81,7 +78,7 @@ public class Main {
                     System.out.println("\n--- List of Clients from DB ---");
                     ArrayList<Client> dbClients = dbManager.getAllClients();
                     for (Client c : dbClients) {
-                        c.printInfoClient(); // Вывод информации
+                        c.printInfoClient();
                     }
                     break;
 
