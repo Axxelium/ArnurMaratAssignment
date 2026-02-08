@@ -7,6 +7,6 @@ Moving everything to a new repository to create a full-fledged project with fron
 <br>
 Moving repository:
 <br>
-https://github.com/Axxelium/OOP-Endterm-task/tree/main
+https://github.com/Axxelium/OOP-Endterm-task
 
 ![Переезд](https://www.meme-arsenal.com/memes/cce461660463f684ef64a5a8c46bcdb8.jpg)
